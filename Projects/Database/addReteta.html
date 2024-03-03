@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+dsdmMqpnOQwliLvUsJfDHW+k9OmgaEheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+    <style>
+        @font-face {
+            font-family: 'SansationLight';
+            src: url('.FontSansationLightSansationLight.eot');
+            src: local('SansationLight'), 
+                 url('.FontSansationLightSansationLight.woff') format('woff'), 
+                 url('.FontSansationLightSansationLight.ttf') format('truetype');
+        }
+
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: 'SansationLight' !important;
+            background:  #FF7FAB;
+        }
+
+        .tablink {
+            font-weight: bold;
+            font-family: 'SansationLight' !important;
+            background-color: #a64d79;
+            color: azure;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 12px 12px;
+            font-size: 17px;
+            width: 12.5%;
+        }
+
+        .tablink:hover {
+            background-color: #579;
+        }
+
+        .tabcontent {
+            color: white;
+            padding: 100px 20px;
+            height: 100%;
+        }
+
+        #Consilieri, #Partide, #Comisii, #Pontaje {
+            background-color: rgb(22, 22, 22);
+        }
+    </style>
+</head>
+<body>
+    <a href="clients"><button class="tablink"Clienti</button></a>
+    <a href="orders"><button class="tablink">Comenzi</button></a>
+    <a href="product_details"><button class="tablink">Detalii Produs</button></a>
+    <a href="ingredients"><button class="tablink">Ingredient</button></a>
+    <a href="products"><button class="tablink">Produs</button></a>
+    <a href="recipes"><button class="tablink"  style="background: #741b47; color: white">Retete</button></a>
+
+
+<div id="Recipes" class="tabcontent">
+    <center>
+        <br>
+        <h1 id="h3Adauga">Adauga Reteta</h1>
+        <br><br><br>
+        <form class="was-validated" method="POST" action="/addReteta">
+            <div class="row">
+         
+
+               
+                   <label for="validationServer01">Id produs</label>
+                    <input name="produs_id_produs" type="number" class="form-control is-valid" id="validationServer01" placeholder="ex. 1" required>
+                </div>
+
+              
+ 		 <div class="col-md-6 mb-3">
+                   <label for="validationServer01">Id ingredient</label>
+                    <input name="ingredient_id_ingredient" type="number" class="form-control is-valid" id="validationServer01" placeholder="ex. 1" required>
+                </div>
+
+	   <label for="validationServer01">Id Reteta</label>
+                    <input name="id_reteta" type="number" class="form-control is-valid" id="validationServer01" placeholder="ex. 1" required>
+                </div>
+
+
+  
+                <div class="col-md-6 mb-3">
+                    <label for="validationServer01">Nume reteta</label>
+                    <input name="nume_reteta" type="text" class="form-control is-valid" id="validationServer01" placeholder="ex. Chec" required>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label for="validationServer01">Timp de preparare</label>
+                    <input name="timp_preparare_minute" type="number" class="form-control is-valid" id="validationServer01" placeholder="ex. 30" required>
+                </div>
+ 		<div class="col-md-6 mb-3">
+                    <label for="validationServer01">Specificatii</label>
+                    <input name="specificatii" type="text" class="form-control is-valid" id="validationServer01" placeholder="ex. Se amesteca incet" required>
+                </div>
+		 <div class="col-md-6 mb-3">
+                    <label for="validationServer01">Cantitate</label>
+                    <input name="cantitate" type="number" class="form-control is-valid" id="validationServer01" placeholder="ex. 4" required>
+                </div>
+                
+            </div>
+            <!-- <form class="was-validated" method="POST" action="/addReteta">
+                Alte câmpuri și secțiuni ale formularului, dacă există -->
+                <button class="btn btn-danger" type="submit">Adauga Reteta</button>
+           
+        </form>
+    </center>
+</div>
+
+
+
+</body>
+</html> 

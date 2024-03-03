@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+<style>
+
+@font-face {
+	font-family: 'SansationLight';
+	src: url('./FontSansationLight/SansationLight.eot');
+	src: local('SansationLight'), url('./FontSansationLight/SansationLight.woff') format('woff'), url('./FontSansationLight/SansationLight.ttf') format('truetype');
+}
+* {box-sizing: border-box}
+
+/* Set height of body and the document to 100% */
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'SansationLight' !important;
+    background: #FF7FAB;
+}
+
+/* Style tab links */
+.tablink {
+	font-weight: bold;
+	font-family: 'SansationLight' !important;
+    background-color: #a64d79;
+    color: azure;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 12px 12px;
+    font-size: 17px;
+    width: 12.5%;
+}
+
+.tablink:hover {
+    background-color: #579;
+}
+.tabcontent {
+    color: white;
+    padding: 100px 20px;
+    height: 100%;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    border-color: white;
+    text-align: center;
+}
+th, td {
+    padding: 15px;
+}
+
+.radiotext {
+    margin: 10px 10px 0px 0px;
+}
+
+/* Style the tab content (and add height:100% for full page content) */
+.tabcontent {
+    color: white;
+    padding: 100px 20px;
+    height: 100%;
+}
+
+#Consilieri {background-color: rgb(22,22,22);}
+#Partide {background-color: rgb(22,22,22);}
+#Comisii {background-color: rgb(22,22,22);}
+#Pontaje {background-color: rgb(22,22,22);}
+</style>
+</head>
+<body> 
+
+   <a href="clients"><button class="tablink">Client</button></a>
+  <a href="orders"><button class="tablink" >Comenzi</button></a>
+  <a href="product_details"><button class="tablink" style="background: #741b47; color: white">Detalii Produs</button></a>
+  <a href="ingredients"><button class="tablink">Ingredient</button></a>
+  <a href="products"><button class="tablink" >Produs</button></a>
+  <a href="recipes"><button class="tablink">Retete</button></a>
+
+  <div id="Detalii Produse" class="tabcontent">
+	<center>
+		  <br>
+  		<h1 id="h3">Detalii produse</h1>
+  		 <br><br>
+		  <div class="btn-group">
+        <a href="addDetalii"><button type="button" class="btn  btn-danger">Adauga detalii produs</button></a>
+		<br>
+		<br>
+					<br>
+  			 </div>
+      <br><br><br><br>
+      <!-- Adăugați tabelul aici, după necesități -->
+      <table style="width:70%">
+        <tr>
+          <th>Nr. crt.</th>
+ 	  <th>Alergeni </th>
+          <th>Data fabricarii</th>
+          <th>Data expirarii</th>
+          <th>Eticheta</th>
+	  <th>Id produs</th>
+          <th>Stergere</th>
+        </tr>
+			{% for detail in details %}
+  			<tr>
+ 			<td>{{ loop.index }}</td>
+    			<td>{{detail["alergeni"]}}</td> 
+    			<td>{{detail["data_fabricarii"]}}</td>
+    			<td>{{detail["data_expirarii"]}}</td>
+			<td>{{detail["eticheta"]}}</td>
+			<td>{{detail["produs_id_produs"]}}</td>
+			 <td>
+		 <!-- Adăugați formularele pentru editare/ștergere și radio button-ul aici, după necesități -->
+              
+              <form class="was-validated" method="POST" action="/deleteDetalii">
+                <button type="submit" name="produs_id_produs" value="{{ detail['produs_id_produs'] }}" class="btn  btn-danger">Sterge detalii</button>
+              </form>
+              <input type="radio" name="region_id" value="{{ detail['produs_id_produs'] }}" onclick="myFunction();" >
+            </td>
+          </tr>
+        {% endfor %}
+      </table>
+
+      <br><br><br>
+    </center>
+  </div>
+
+</body>
+</html>

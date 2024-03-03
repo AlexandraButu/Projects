@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Editează Comanda</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <style>
+    @font-face {
+      font-family: 'SansationLight';
+      src: url('./FontSansationLight/SansationLight.eot');
+      src: local('SansationLight'), url('./FontSansationLight/SansationLight.woff') format('woff'), url('./FontSansationLight/SansationLight.ttf') format('truetype');
+    }
+    * {box-sizing: border-box}
+    /* Set height of body and the document to 100% */
+    body, html {
+      height: 100%;
+      margin: 0;
+      font-family: 'SansationLight' !important;
+      background: rgb(22,22,22);
+    }
+    /* Style tab links */
+    .tablink {
+      font-weight: bold;
+      font-family: 'SansationLight' !important;
+      background-color: #557;
+      color: azure;
+      float: left;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 12px 12px;
+      font-size: 17px;
+      width: 12.5%;
+    }
+    .tablink:hover {
+      background-color: #579;
+    }
+    /* Style the tab content (and add height:100% for full page content) */
+    .tabcontent {
+      color: white;
+      padding: 100px 20px;
+      height: 100%;
+    }
+    #Consilieri {background-color: rgb(22,22,22);}
+    #Partide {background-color: rgb(22,22,22);}
+    #Comisii {background-color: rgb(22,22,22);}
+    #Pontaje {background-color: rgb(22,22,22);}
+  </style>
+</head>
+<body>
+  <a href="clients"><button class="tablink" >Client</button></a>
+  <a href="orders"><button class="tablink" >Comenzi</button></a>
+  <a href="product_details"><button class="tablink">Detalii Produs</button></a>
+  <a href="ingredients"><button class="tablink"  style="background: #741b47; color: white">Ingredient</button></a>
+  <a href="products"><button class="tablink" >Produs</button></a>
+  <a href="recipes"><button class="tablink">Retete</button></a>
+
+  <div id="/editIngredient" class="tabcontent">
+    <center>
+      <br>
+      <h1 id="h3">Editează ingredientul</h1>
+      <br><br><br>
+      <form class="was-validated" method="POST" action="/editIngr">
+	
+        <div class="row">
+	 <div class="col-md-6 mb-3">
+            <label for="validationServer01">id_ingredient</label>
+            <input name="id_ingredient" type="text" class="form-control is-valid" id="validationServer01" value="{{id_ingredient}}" required>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="validationServer01">cantitate</label>
+            <input name="cantitate" type="text" class="form-control is-valid" id="validationServer01" value="{{cantitate}}" required>
+          </div>
+ 	 <div class="col-md-6 mb-3">
+            <label for="validationServer01">cantitate ramasa</label>
+            <input name="cantitate_ramasa" type="text" class="form-control is-valid" id="validationServer01" value="{{cantitate_ramasa}}" required>
+          </div>
+
+
+         
+         
+        </div>
+        <button type="submit" name="id_ingredient" value="{{id_ingredient}}" class="btn btn-danger">Editeaza ingredient</button>
+      </form>
+    </center>
+    <script type="text/javascript">
+      function checkDuplicates() {
+        var selects = document.getElementsByTagName('select');
+        var values = [];
+        for(i=0;i<selects.length;i++) {
+          var select = selects[i];
+          if(values.indexOf(select.value)>-1) {
+            alert('Comisia ' + i + ' a fost aleasa de mai multe ori!'); //if duplicates found we are returning. without save and no need to continue.
+            return false;
+          }
+          values.push(select.value)
+        }
+        return true;
+        //saveform here
+      }
+    </script>
+  </div>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+dsdmMqpnOQwliLvUsJfDHW+k9OmgaEheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+    <style>
+        @font-face {
+            font-family: 'SansationLight';
+            src: url('.FontSansationLightSansationLight.eot');
+            src: local('SansationLight'), 
+                 url('.FontSansationLightSansationLight.woff') format('woff'), 
+                 url('.FontSansationLightSansationLight.ttf') format('truetype');
+        }
+
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: 'SansationLight' !important;
+            background:  #FF7FAB;
+        }
+
+        .tablink {
+            font-weight: bold;
+            font-family: 'SansationLight' !important;
+            background-color: #a64d79;
+            color: azure;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 12px 12px;
+            font-size: 17px;
+            width: 12.5%;
+        }
+
+        .tablink:hover {
+            background-color: #579;
+        }
+
+        .tabcontent {
+            color: white;
+            padding: 100px 20px;
+            height: 100%;
+        }
+
+        #Consilieri, #Partide, #Comisii, #Pontaje {
+            background-color: rgb(22, 22, 22);
+        }
+    </style>
+</head>
+<body>
+    <a href="clients"><button class="tablink">Clienti</button></a>
+    <a href="orders"><button class="tablink"  style="background: #741b47; color: white" >Comenzi</button></a>
+    <a href="product_details"><button class="tablink">Detalii Produs</button></a>
+    <a href="ingredients"><button class="tablink">Ingredient</button></a>
+    <a href="products"><button class="tablink">Produs</button></a>
+    <a href="recipes"><button class="tablink">Retete</button></a>
+
+
+<div id="Orders" class="tabcontent">
+    <center>
+        <br>
+        <h1 id="h3Adauga">Adauga comanda</h1>
+        <br><br><br>
+        <form class="was-validated" method="POST" action="/addComanda">
+            <div class="row">
+                 <div class="col-md-6 mb-3">
+                    <label for="validationServer01">Comanda id</label>
+                        <input name="id_comanda" type="number" class="form-control is-valid" id="validationServer01" placeholder="ex. 22" required>
+                    
+                </div> 
+                <div class="col-md-6 mb-3">
+                   <label for="validationServer01">Data comenzii</label>
+                  <input name="data_comenzii" type="text" class="form-control is-valid" id="validationServer01" placeholder="ex.12-feb-1998" required>
+                </div>
+ 		 <div class="col-md-6 mb-3">
+                   <label for="validationServer01">Id Client</label>
+                  <input name="client_id_client" type="number" class="form-control is-valid" id="validationServer01" placeholder="ex. 1" required>
+                </div>
+ 		<div class="col-md-6 mb-3">
+                   <label for="validationServer01">Id Produs</label>
+                  <input name="produs_id_produs" type="number" class="form-control is-valid" id="validationServer01" placeholder="ex. 2" required>
+                </div>
+		<div class="col-md-6 mb-3">
+                   <label for="validationServer01">Nr bucati</label>
+                  <input name="nr_bucati" type="number" class="form-control is-valid" id="validationServer01" placeholder="ex. 2" required>
+                </div>
+		
+
+            </div>
+ 	   <div class="row">
+            
+ <div class="col-md-6 mb-3">
+              <label for="validationServer01">Status comandă</label>
+    <select name="status" class="custom-select d-block my-3">
+      <option value="">Alege Status comandă</option>
+      <option value="Preluata">Preluata</option>
+      <option value="In curs de preparare">In curs de preparare</option>
+      <option value="Livrata">Livrata</option>
+    </select>
+
+<div class="col-md-6 mb-3">
+    <label for="validationServer01">Metoda de plată</label>
+    <select name="metoda_plata" class="custom-select d-block my-3">
+      <option value="">Alege Metoda de plată</option>
+      <option value="Cash">Cash</option>
+      <option value="Cu card">Cu card</option>
+    </select>
+  </div>
+   
+
+          <!-- <form class="was-validated" method="POST" action="/addComanda">
+                Alte câmpuri și secțiuni ale formularului, dacă există -->
+                <button class="btn btn-danger" type="submit">Adauga Comanda</button>
+           
+        </form>
+    </center>
+</div>
+
+
+</body>
+</html> 

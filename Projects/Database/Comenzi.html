@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+
+    @font-face {
+      font-family: 'SansationLight';
+      src: url('./FontSansationLight/SansationLight.eot');
+      src: local('SansationLight'), url('./FontSansationLight/SansationLight.woff') format('woff'), url('./FontSansationLight/SansationLight.ttf') format('truetype');
+    }
+    * {box-sizing: border-box}
+
+    /* Set height of body and the document to 100% */
+    body, html {
+        height: 100%;
+        margin: 0;
+        font-family: 'SansationLight' !important;
+        background: #FF7FAB;
+    }
+
+    /* Style tab links */
+    .tablink {
+      font-weight: bold;
+      font-family: 'SansationLight' !important;
+      background-color: #a64d79;
+      color: azure;
+      float: left;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 12px 12px;
+      font-size: 17px;
+      width: 12.5%;
+    }
+
+    .tablink:hover {
+      background-color: #579;
+    }
+
+    /* Style the tab content (and add height:100% for full page content) */
+    .tabcontent {
+        color: white;
+        padding: 100px 20px;
+        height: 100%;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        border-color: white;
+        text-align: center;
+    }
+    th, td {
+        padding: 15px;
+    }
+
+    .radiotext {
+        margin: 10px 10px 0px 0px;
+    }
+
+  </style>
+  <script>
+    function myFunction() {	
+      var rate_value = document.getElementsByName('region_id');
+
+      if(rate_value[0]){
+        alert(rate_value[0].value);
+        document.getElementsByName('id_comanda').value=rate_value[0].value;
+        alert(document.getElementsByName('id_comanda').value);
+      }
+    }
+  </script>
+</head>
+<body>
+  <a href="clients"><button class="tablink">Client</button></a>
+  <a href="orders"><button class="tablink" style="background: #741b47; color: white">Comenzi</button></a>
+  <a href="product_details"><button class="tablink">Detalii Produs</button></a>
+  <a href="ingredients"><button class="tablink">Ingredient</button></a>
+  <a href="products"><button class="tablink" >Produs</button></a>
+  <a href="recipes"><button class="tablink">Retete</button></a>
+
+  <div id="Comenzi" class="tabcontent">
+    <center>
+      <br>
+      <h1 id="h3">Comenzi</h1>
+      <br><br>
+      <!-- Adăugați butoanele și form-urile aici, după necesități -->
+      <div class="btn-group">
+        <a href="addComanda"><button type="button" class="btn  btn-danger">Adauga comanda</button></a>
+        <br>
+        <br>
+
+		
+				<br>
+      </div>
+      <br><br><br><br>
+      <!-- Adăugați tabelul aici, după necesități -->
+      <table style="width:70%">
+        <tr>
+          <th>Nr. crt.</th>
+ 	  <th>ID Comanda</th>
+          <th>Data comenzii</th>
+          <th>Status</th>
+          <th>Metoda plata</th>
+          <th>Id client</th>
+	  <th>Id produs</th>
+          <th>Nr bucati</th>
+          <th>Editare/Stergere</th>
+        </tr>
+        {% for order in orders %}
+          <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ order['id_comanda'] }}</td>
+            <td>{{ order['data_comenzii'] }}</td>
+            <td>{{ order['status'] }}</td>
+            <td>{{ order['metoda_plata'] }}</td>
+            <td>{{ order['client_id_client'] }}</td>
+            <td>{{ order['produs_id_produs'] }}</td>
+	    <td>{{ order['nr_bucati'] }}</td>
+            <td>
+              <!-- Adăugați formularele pentru editare/ștergere și radio button-ul aici, după necesități -->
+              <form class="was-validated" method="POST" action="/editComanda">
+                <button type="submit" name="id_comanda" value="{{order['id_comanda'] }}" class="btn btn-danger">Editeaza comanda</button>
+              </form>
+              <form class="was-validated" method="POST" action="/deleteComanda">
+                <button type="submit" name="id_comanda" value="{{ order['id_comanda'] }}" class="btn  btn-danger">Sterge comanda</button>
+              </form>
+              <input type="radio" name="region_id" value="{{ order['id_comanda'] }}" onclick="myFunction();" >
+            </td>
+          </tr>
+        {% endfor %}
+      </table>
+
+      <br><br><br>
+    </center>
+  </div>
+
+</body>
+</html>
